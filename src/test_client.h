@@ -3,6 +3,8 @@
 #include <iterator>
 #include <chrono>
 
+#include "gauge.h"
+
 class State {
 public:
     struct StateIterator {
@@ -45,7 +47,6 @@ private:
     int iterations;
 };
 
-using GaugeMethodType = void(*)(State& state);
 
 class GaugeMethodMetaData {
 public:

@@ -115,12 +115,13 @@ double GaugeRunResult::getAverageRealTime() const {
     
 /***********************************/
 
-auto reportResult(const GaugeRunResult& runResult) {
+auto reportResult(const GaugeRunResult& runResult) -> void {
     std::cout << runResult.getAverageRealTime() << " seconds." << std::endl;
 }
 
-auto registerGaugeMethod(GaugeMethodType gaugeMethod) {
+auto registerGaugeMethod(GaugeMethodType gaugeMethod) -> int {
     GaugeMethodStore::GetInstance()->addMethod(gaugeMethod);
+    return 0;
 }
 
 auto runProvidedGaugeMethods() -> void {
@@ -154,7 +155,6 @@ void Gauge_VectorInit(State& state) {
 
 /**************************/
 
-auto main(int argc, char* argv[]) -> int {
-    registerGaugeMethod(Gauge_VectorInit);
-    runProvidedGaugeMethods();
-}
+GAUGE_REGISTER(Gauge_VectorInit);
+
+GAUGE_DEFINE_MAIN();
